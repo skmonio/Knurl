@@ -1479,7 +1479,8 @@ function openProduct(seriesCode, tableIdx, rowIdx, code){
   let pairPart = null;
   const groupName = findGroup(seriesCode);
   const isCutKnurl = /cut/i.test(groupName||'');
-  if(pairCode && !isCutKnurl){
+  // Cut knurls are only paired in 15° (BL15 <-> BR15); every other type pairs all LH/RH styles.
+  if(pairCode && (!isCutKnurl || code==='BL15' || code==='BR15')){
     pairPart = row.styles[pairCode];
   }
 
